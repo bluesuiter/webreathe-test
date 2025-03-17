@@ -16,4 +16,7 @@ use Illuminate\Http\Request;
 
 Route::middleware('api')->group(function () {
     Route::post('/module-activity/store', [App\Http\Controllers\ModuleActivityController::class, 'store'])->name('store.modeActivity');
+
+    // Get notifications list
+    Route::get('/notification', [App\Http\Controllers\NotificationController::class, 'index'])->name('notification.index');
 });

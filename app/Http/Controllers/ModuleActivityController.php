@@ -39,7 +39,7 @@ class ModuleActivityController extends Controller
         $module = Modules::where('sr_no', $srNo)->first();
         $notification = [];
 
-        if ($request->get('temprature') >= $module->max_operating_temp) {
+        if ($request->get('temprature') >= ($module->max_operating_temp - 5)) {
             $notification['description'] = "Module ($module->sr_no) temprature is near to high.";
             $notification['global_fl'] = true;
             Notification::create($notification);

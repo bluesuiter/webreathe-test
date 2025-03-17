@@ -29,7 +29,7 @@ class HomeController extends Controller
         $chartData = [];
         foreach ($moduleActivity as $activity) {
             if (!empty($chartData[$activity->modules->id]['data'])) {
-                if (count($chartData[$activity->modules->id]['data']) === 8) {
+                if (count($chartData[$activity->modules->id]['data']) === 7) {
                     continue;
                 }
             }

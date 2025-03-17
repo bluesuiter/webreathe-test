@@ -361,4 +361,31 @@
             }
         });
     }
+
+    /**
+     * fetch the notification
+     */
+    const notificationContainer = select("#notification-container");
+    if (notificationContainer) {
+        fetch("/api/notification")
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.length > 0) {
+                    notificationContainer.innerHTML = data
+                        .map((notification) => {
+                            return `
+                            <div class="notification ${notification.status}">
+                                <a href="${notification.url}">
+                                    ${notification.message}
+                                    <span class="badge badge-${notification.status}">
+                                        ${notification.unread_count}
+                                    </span>
+                                </a>
+                            </div>
+                        `;
+                        })
+                        .join("");
+                }
+            });
+    }
 })();
