@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ModuleActivity;
 use App\Models\Modules;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 
 class ModuleActivityController extends Controller
@@ -36,6 +37,13 @@ class ModuleActivityController extends Controller
 
         $srNo = $request->get('sr_no');
         $module = Modules::where('sr_no', $srNo)->first();
+        $notification = [];
+
+        if ($request->get('temprature') >= $module->max_operating_temp) {
+            $notification['description'] = "Module ($module->sr_no) temprature is near to high.";
+            $notification['global_fl'] = true;
+            Notification::create($notification);
+        }
 
         $data = $request->all();
         $data['description'] = "Module ($module->sr_no) is up.";
