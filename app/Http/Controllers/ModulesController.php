@@ -51,7 +51,8 @@ class ModulesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $module = Modules::find($id);
+        return view('modules/show', compact('module'));
     }
 
     /**
@@ -59,7 +60,8 @@ class ModulesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $module = Modules::where([['id', '=', $id], ['active_fl', '=', true]])->first();
+        return view('modules/edit', compact('module'));
     }
 
     /**
@@ -67,7 +69,20 @@ class ModulesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'mtbf' => ['required', 'numeric', 'min:0'],
+            'min_operating_temp' => ['required', 'numeric'],
+            'max_operating_temp' => ['required', 'numeric', 'min:0'],
+            'installed_fl' => ['boolean'],
+        ]);
+
+        $module = Modules::find($id);
+        $data = $request->all();
+
+        $data['created_by'] = Auth::user()->id;
+        $module->update($data);
+        return redirect()->route('modules.index')->with('success', 'Module updated successfully.');
     }
 
     /**

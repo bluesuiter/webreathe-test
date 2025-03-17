@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $.ajax({
+                    url: "http://127.0.0.1:8000/api/module-activity/store",
+                    dataType: "json",
+                    method: "post",
+                    data: {
+                        sr_no: "CMR5345UREI434",
+                        temprature: 25,
+                        timestamp: "2023-01-01 12:00:00",
+                    },
+
+                    success: function (data) {
+                        $("p").text(data.name);
+                    },
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <p>If you click on me, I will disappear.</p>
+        <p>Click me away!</p>
+        <p>Click me too!</p>
+    </body>
+</html>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<title>{{ config('app.name', 'Laravel') }}</title>
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>{{ config('app.name', 'Laravel') }}</title>
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Favicons -->
   <link rel="icon" href="{{ asset('assets/img/favicon.png') }}" />
@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
 
   <!-- jQuery File -->
-  <script href="{{ asset('/js/jquery-min.js') }}"></script>
+  <script src="{{ asset('assets/js/jquery-min.js') }}"></script>
 
   <!-- =======================================================
   * Template Name: NiceAdmin

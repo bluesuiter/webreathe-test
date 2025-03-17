@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('sr_no', 225)->unique('mod_sr_no');
             $table->integer('mtbf')->comment('mean time between failures')->default(0);
             $table->integer('min_operating_temp')->comment('minimum operating temprature');
             $table->unsignedInteger('max_operating_temp')->comment('maximum operating temprature');
@@ -28,10 +29,11 @@ return new class extends Migration
         Schema::create('module_activities', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('module_id');
-            $table->string('description', 225);
-            $table->boolean('up_fl')->default(true);
             $table->foreign('module_id')->references('id')->on('modules');
-            $table->timestamps();
+            $table->string('description', 225);
+            $table->integer('temprature')->default(0)->comment('temprature of module');
+            $table->boolean('up_fl')->default(true)->comment('is module up');
+            $table->datetime('created_at')->useCurrent();
         });
     }
 
