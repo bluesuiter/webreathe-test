@@ -9,14 +9,17 @@
 
 ## How to run main application
 
-`composer install\
-php artisan migrate:fresh --seed\
-php artisan serve`
+```
+composer install
+php artisan migrate:fresh --seed
+php artisan serve
+```
 
 
 ## How to run test device
 Clone the repository `https://github.com/bluesuiter/test-device`
 
-`   npm install\
-    npm run test
-`
+```
+npm install
+npm run test
+```
